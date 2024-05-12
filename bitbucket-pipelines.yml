@@ -1,0 +1,80 @@
+image: cypress/base:12
+options:
+  max-time: 10
+
+definitions:
+  steps:
+    - step: &dependencies
+        name: Install dependencies
+        caches:
+          - npm
+          - cypress
+          - node
+        script:
+          - npm ci
+    - step: &all
+        name: E2E tests and reports
+        caches:
+          - node
+          - cypress
+        script:
+          - npm run reports:clean
+          - ./cypress.sh
+          - npm run reports:merge
+          - npm run reports:generate
+        artifacts:
+          - cypress/screenshots/**
+          - cypress/videos/**
+          - cypress/reports/**
+    - step: &api
+        name: E2E API tests and reports
+        caches:
+          - node
+          - cypress
+        script:
+          - npm run reports:clean
+          - ./cypress.sh api
+          - npm run reports:merge
+          - npm run reports:generate
+        artifacts:
+          - cypress/screenshots/**
+          - cypress/videos/**
+          - cypress/reports/**
+    - step: &ui
+        name: E2E UI tests and reports
+        caches:
+          - node
+          - cypress
+        script:
+          - npm run reports:clean
+          - ./cypress.sh ui
+          - npm run reports:merge
+          - npm run reports:generate
+        artifacts:
+          - cypress/screenshots/**
+          - cypress/videos/**
+          - cypress/reports/**
+  caches:
+    npm: $HOME/.npm
+    cypress: $HOME/.cache/Cypress
+
+pipelines:
+  default:
+    - step:
+        <<: *dependencies
+  custom:
+    all:
+      - step:
+          <<: *dependencies
+      - step:
+          <<: *all
+    api:
+      - step:
+          <<: *dependencies
+      - step:
+          <<: *api
+    ui:
+      - step:
+          <<: *dependencies
+      - step:
+          <<: *ui
