@@ -1,3 +1,11 @@
+<p align="center">
+<img src="https://www.cypress.io/_astro/navbar-brand.D87396b0.svg" alt="Снзкуіі Дщпщ" width=370>
+<h3 align="center">Cypress Typescript Boilerplate</h3>
+<p align="center">
+Boilerplate project for Web/API Test Automation</p>
+</p>
+
+
 # Getting started with Cypress E2E
 
 Fast, easy and reliable testing for anything that runs in a browser.
