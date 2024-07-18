@@ -1,8 +1,8 @@
 {
-  "name": "cypress-boilerplate",
-  "version": "1.1.0",
+  "name": "cypress-typescript-boilerplate",
+  "version": "1.0.0",
   "description": "Boilerplate for cypress project",
-  "author": "The Software House sp. z. o. o.",
+  "author": "Wasyl Mowczan",
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
